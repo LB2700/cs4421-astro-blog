@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	name: string;
+	bio: string;
+	avatar: ImageMetadata;
+	socialLinks: { label: string; url: string }[];
+}
+
+const { name, bio, avatar, socialLinks } = Astro.props;
+---
+
+<aside class="author-bio" aria-label={`About ${name}`}>
+	<Image class="avatar" src={avatar} width={96} height={96} alt={`${name}'s avatar`} />
+	<div>
+		<h2>About {name}</h2>
+		<p>{bio}</p>
+		<nav aria-label={`${name}'s social links`}>
+			<ul>
+				{socialLinks.map((link) => (
+					<li><a href={link.url} rel="me">{link.label}</a></li>
+				))}
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<style>
+	.author-bio {
+		display: flex;
+		gap: 1.25rem;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.avatar {
+		flex: 0 0 auto;
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+	.author-bio h2 {
+		font-size: 1.25em;
+	}
+	.author-bio p {
+		margin: 0 0 0.5rem;
+	}
+	.author-bio ul {
+		display: flex;
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	@media (max-width: 480px) {
+		.author-bio {
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+		}
+		.author-bio ul {
+			justify-content: center;
+		}
+	}
+</style>
