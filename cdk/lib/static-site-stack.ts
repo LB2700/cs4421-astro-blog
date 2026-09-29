@@ -7,6 +7,7 @@ import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 export class StaticSiteStack extends cdk.Stack {
 	constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
 		super(scope, id, props);
+		
 		const siteBucket = new s3.Bucket(this, 'SiteBucket', {
 			removalPolicy: cdk.RemovalPolicy.DESTROY,
 			autoDeleteObjects: true,
@@ -18,7 +19,7 @@ export class StaticSiteStack extends cdk.Stack {
 		});
 
 		new s3deploy.BucketDeployment(this, 'DeploySite', {
-			sources: [s3deploy.Source.asset('./dist')],
+			sources: [s3deploy.Source.asset('./../dist')],
 			destinationBucket: siteBucket,
 			distribution,
 			distributionPaths: ['/*'], // Automatic CloudFront CDN cache invalidation!
