@@ -1,6 +1,9 @@
 import eslintPluginAstro from "eslint-plugin-astro";
 
 export default [
+	{
+		ignores: ["cdk/**"],
+	},
 	// add more generic rule sets here, such as:
 	// js.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
