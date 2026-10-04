@@ -31,5 +31,21 @@ export default defineConfig({
 				],
 			},
 		},
+		{
+			provider: fontProviders.local(),
+			name: 'Logo Script',
+			cssVariable: '--font-condiment',
+			fallbacks: ['cursive'],
+			options: {
+				variants: [
+					{
+						src: ['./src/assets/fonts/logo-script-baseline.ttf'],
+						weight: 400,
+						style: 'normal',
+						display: 'swap',
+					},
+				],
+			},
+		},
 	],
 });
