@@ -61,13 +61,13 @@ import ActionButton from './ActionButton.astro';
 		margin: 0;
 		padding: 0.5em 1em;
 		background: $banner-bg;
-		border-bottom: 1px solid color.adjust($banner-bg, $lightness: -10%, $saturation: -30%);
+		border-bottom: 1px solid $banner-liner;
 		// box-shadow: 0 2px 8px rgba($charcoal-blue, 10%);
 	
 	}
 	nav {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(12rem, 22rem) minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) max(16rem, 40%) minmax(0, 1fr);
 		align-items: center;
 	}
 	.account-actions {

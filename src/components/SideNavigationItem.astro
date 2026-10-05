@@ -1,0 +1,46 @@
+---
+interface Props {
+	href: string;
+	label: string;
+}
+
+const { href, label } = Astro.props;
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+const isActive =
+	href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
+---
+
+<a class="navigation-item" href={href} aria-current={isActive ? 'page' : undefined}>
+	{label}
+</a>
+
+<style lang="scss">
+	@use "../styles/_variables.scss" as *;
+
+	.navigation-item {
+		display: block;
+		padding: 0.7rem 1rem;
+		border-radius: 0.6rem;
+		color: $charcoal-blue;
+		font-size: 0.95rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: background-color 150ms ease, color 150ms ease;
+
+		&:hover,
+		&:focus-visible {
+			background: $porcelain;
+			color: $jet-black;
+		}
+
+		&:focus-visible {
+			outline: 2px solid $verdigris;
+			outline-offset: 2px;
+		}
+
+		&[aria-current='page'] {
+			background: $charcoal-blue;
+			color: $porcelain;
+		}
+	}
+</style>

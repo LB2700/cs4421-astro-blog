@@ -4,7 +4,7 @@
 $jet-black: hsla(195, 35%, 20%, 1);
 $charcoal-blue: hsla(197, 37%, 24%, 1);
 $verdigris: hsla(173, 58%, 39%, 1);
-$porcelain: hsla(48, 45%, 98%, 1);
+$porcelain: hsl(40, 40%, 99%);
 $emerald: hsla(132, 40%, 52%, 1);
 $willow-green: hsla(100, 34%, 59%, 1);
 $dry-sage: hsla(64, 39%, 59%, 1);
@@ -14,15 +14,17 @@ $burnt-peach: hsla(12, 76%, 61%, 1);
 $cinnabar: hsla(3, 77%, 61%, 1);
 
 $porcelian-dark: color.adjust($porcelain, $lightness: -5%, $saturation: -20%);
-$porcelian-darker: color.adjust($porcelain, $lightness: -20%, $saturation: -10%);
+$porcelian-darker: color.adjust($porcelain, $lightness: -20%, $saturation: -10);
 $jet-black-dark: color.adjust($jet-black, $lightness: -10%, $saturation: -20%);
 
 
 $gray-gradient: $charcoal-blue, $jet-black;
-$light-gradient: $porcelain, $porcelian-dark;
+$porcelian-gradient: $porcelain, $porcelian-dark;
+$porcelian-dark-gradient: $porcelian-dark, $porcelian-darker;
 
 /* Light Mode */
-$body-bg: linear-gradient($light-gradient);
+$body-bg: linear-gradient($porcelian-gradient);
 
 //$banner-bg: $jet-black;
-$banner-bg: color.adjust($porcelain, $lightness: -5%, $saturation: -20%);
+$banner-bg: $porcelian-dark;
+$banner-liner: color.adjust($banner-bg, $lightness: -20%, $saturation: -30%);
