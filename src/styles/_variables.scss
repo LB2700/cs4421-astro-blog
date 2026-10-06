@@ -14,9 +14,8 @@ $burnt-peach: hsla(12, 76%, 61%, 1);
 $cinnabar: hsla(3, 77%, 61%, 1);
 
 $porcelian-dark: color.adjust($porcelain, $lightness: -5%, $saturation: -20%);
-$porcelian-darker: color.adjust($porcelain, $lightness: -20%, $saturation: -10);
+$porcelian-darker: color.adjust($porcelain, $lightness: -20%, $saturation: -10%);
 $jet-black-dark: color.adjust($jet-black, $lightness: -10%, $saturation: -20%);
-
 
 $gray-gradient: $charcoal-blue, $jet-black;
 $porcelian-gradient: $porcelain, $porcelian-dark;
