@@ -22,7 +22,8 @@ jobs:
         run: npm run build
 
       - name: Change Directory to CDK Project
-        run: cd cdk && npm ci 
+        working-directory: cdk
+        run: npm ci 
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -32,4 +33,5 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Infrastructure & Assets with AWS CDK
-        run: pwd && npx cdk deploy --require-approval never
+        working-directory: cdk
+        run: npx cdk deploy --require-approval never
