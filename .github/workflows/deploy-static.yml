@@ -32,4 +32,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Infrastructure & Assets with AWS CDK
-        run: npx cdk deploy --app "node dist/index.js" --require-approval never
+        run: pwd && npx cdk deploy --require-approval never
