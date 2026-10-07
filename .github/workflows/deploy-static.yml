@@ -1,7 +1,7 @@
 name: Deploy Static Site via AWS CDK
 on:
   push:
-    branches: [main, 27-bug-aws-s3-deployment]
+    branches: [main]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,4 +32,5 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Infrastructure & Assets with AWS CDK
-        run: npx cdk deploy --app "npx ts-node && npx ts-node bin/cdk.ts" --require-approval never
+        working-directory: ./cdk
+        run: npx cdk deploy --require-approval never
