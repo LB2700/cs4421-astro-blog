@@ -19,6 +19,7 @@
     "@astrojs/mdx": "^8.0.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
+    "@supabase/supabase-js": "^2.117.3",
     "astro": "^7.3.5",
     "jiti": "^2.7.0",
     "sass": "^1.105.1",
