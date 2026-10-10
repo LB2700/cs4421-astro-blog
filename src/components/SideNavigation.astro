@@ -1,0 +1,36 @@
+---
+import SideNavigationItem from './SideNavigationItem.astro';
+---
+
+<nav class="side-navigation" aria-label="Main navigation">
+	<SideNavigationItem href="/" label="Home" />
+	<SideNavigationItem href="/blog" label="Blog" />
+	<SideNavigationItem href="/about" label="About" />
+</nav>
+
+<style lang="scss">
+	@use "../styles/_variables.scss" as *;
+
+	.side-navigation {
+		display: flex;
+		width: 14rem;
+		box-sizing: border-box;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 1.5rem 1rem;
+		border-right: 1px solid $banner-liner;
+		background: $banner-bg;
+	}
+
+	@media (max-width: 720px) {
+		.side-navigation {
+			width: 10rem;
+			padding: 1rem 0.5rem;
+		}
+
+		.side-navigation :global(.navigation-item) {
+			padding: 0.6rem;
+			font-size: 0.85rem;
+		}
+	}
+</style>

@@ -1,12 +1,23 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Logo from './Logo.astro';
+import SearchBar from './SearchBar.astro';
+import ActionButton from './ActionButton.astro';
+
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
+		<Logo><a href="/">{SITE_TITLE}</a></Logo>
+		<SearchBar />
+		<div class="account-actions">
+			<ActionButton href="/login" variant="secondary">Log in</ActionButton>
+			<ActionButton href="/signup" variant="primary">Sign up</ActionButton>
+		</div>
+		<!-- <h2><a href="/">{SITE_TITLE}</a></h2> -->
+
+		<!-- <div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
@@ -39,29 +50,31 @@ import HeaderLink from './HeaderLink.astro';
 					></path></svg
 				>
 			</a>
-		</div>
+		</div> -->
 	</nav>
 </header>
-<style>
+<style lang="scss">
+	@use "../styles/_variables.scss" as *;
+	@use "sass:color";
+
 	header {
 		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		padding: 0.5em 1em;
+		background: $banner-bg;
+		border-bottom: 1px solid $banner-liner;
+		// box-shadow: 0 2px 8px rgba($charcoal-blue, 10%);
+	
 	}
 	nav {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) max(16rem, 40%) minmax(0, 1fr);
 		align-items: center;
-		justify-content: space-between;
+	}
+	.account-actions {
+		display: flex;
+		justify-self: end;
+		align-items: center;
+		gap: 0.6rem;
 	}
 	nav a {
 		padding: 1em 0.5em;
@@ -73,13 +86,17 @@ import HeaderLink from './HeaderLink.astro';
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
+
 	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+		nav {
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.75rem 1rem;
+		}
+
+		nav :global(.search-bar) {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			justify-self: center;
 		}
 	}
 </style>
