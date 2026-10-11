@@ -10,11 +10,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 	<body>
 		<main>
 			<slot />
+			<div class="auth-footer">
+				<p>
+					Already have an account? <a href="/login">Log in</a>
+				</p>
+			</div>
 		</main>
 
 		<style lang="scss">
 
-			@use "/src/styles/variables" as *;
+			@use "/src/styles/_variables.scss" as *;
 
 			body {
 				display: flex;
@@ -24,12 +29,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 			main {
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 				align-items: center;
 				justify-content: center;
+				padding:0;
 				min-height: 60vh;
 				background-color: $banner-bg;
-				box-shadow: 0 2px 8px rgba($charcoal-blue, 10%);
+				box-shadow: 2px 3px 8px rgba($charcoal-blue, 15%);
+				border-radius: 0.35rem;
+				overflow: hidden;
+			}
+
+
+			.auth-footer {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				align-self: stretch;
+				background: $charcoal-blue-gradient;
+				color: $porcelain;
 			}
 
 		</style>

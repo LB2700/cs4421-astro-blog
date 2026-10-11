@@ -1,0 +1,152 @@
+---
+import showIconUrl from '../assets/icons/visibility_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?url';
+import hideIconUrl from '../assets/icons/visibility_off_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?url';
+
+interface Props {
+	id: string;
+	name: string;
+	label: string;
+	placeholder?: string;
+	type?: 'text' | 'email' | 'password';
+	required?: boolean;
+	autocomplete?: string;
+}
+
+const {
+	id,
+	name,
+	label,
+	placeholder,
+	type = 'text',
+	required = false,
+	autocomplete,
+} = Astro.props;
+
+---
+
+<div class="text-input">
+	<label for={id}>{label}</label>
+	<div class="input-wrapper">
+		<input
+			id={id}
+			name={name}
+			type={type}
+			placeholder={placeholder}
+			required={required}
+			autocomplete={autocomplete}
+		/>
+		{
+			type === 'password' && (
+				<button
+					class="password-toggle"
+					type="button"
+					data-password-toggle
+					aria-label="Show password"
+					aria-controls={id}
+					aria-pressed="false"
+					data-show-icon-src={showIconUrl}
+					data-hide-icon-src={hideIconUrl}
+				>
+					<img src={showIconUrl} alt="" aria-hidden="true" />
+				</button>
+			)
+		}
+	</div>
+</div>
+
+<script>
+
+	const toggleButtons = document.querySelectorAll<HTMLButtonElement>('[data-password-toggle]');
+
+
+	toggleButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			const showIconSrc = button.dataset.showIconSrc;;
+			const hideIconSrc = button.dataset.hideIconSrc;
+
+			if (!showIconSrc || !hideIconSrc) return;
+			
+			const inputId = button.getAttribute('aria-controls');
+			const input = inputId ? document.getElementById(inputId) : null;
+			const icon = button.querySelector('img');
+
+			if (!(input instanceof HTMLInputElement) || !icon) {
+				return;
+			}
+
+			const isVisible = input.type === 'password';
+			input.type = isVisible ? 'text' : 'password';
+			button.setAttribute('aria-label', isVisible ? 'Hide password' : 'Show password');
+			button.setAttribute('aria-pressed', String(isVisible));
+			icon.src = isVisible ? hideIconSrc : showIconSrc;
+		});
+	});
+</script>
+
+<style lang="scss">
+	@use '../styles/_variables.scss' as *;
+
+	.text-input {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.input-wrapper {
+		position: relative;
+	}
+
+	input {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0.7rem 0.8rem;
+		border: 1px solid $porcelian-darker;
+		border-radius: 0.35rem;
+		background: $porcelain;
+		color: $jet-black;
+		font: inherit;
+		font-size: 1rem;
+
+		&[type='password'] {
+			padding-right: 2.8rem;
+		}
+
+		&::placeholder {
+			color: $charcoal-blue;
+			opacity: 0.65;
+		}
+
+		&:focus-visible {
+			border-color: $charcoal-blue;
+			outline: 2px solid $charcoal-blue;
+			outline-offset: 2px;
+		}
+	}
+
+	.password-toggle {
+		position: absolute;
+		top: 50%;
+		right: 0.7rem;
+		display: grid;
+		width: 1.5rem;
+		height: 1.5rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: $charcoal-blue;
+		cursor: pointer;
+		place-items: center;
+		transform: translateY(-50%);
+
+		&:focus-visible {
+			border-radius: 0.2rem;
+			outline: 2px solid $charcoal-blue;
+			outline-offset: 2px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+</style>
