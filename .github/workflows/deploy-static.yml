@@ -1,7 +1,7 @@
 name: Deploy Static Site via AWS CDK
 on:
   push:
-    branches: [main]
+    branches: [static-site]
 jobs:
   deploy:
     runs-on: ubuntu-latest
