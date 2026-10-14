@@ -1,0 +1,26 @@
+@use "/src/styles/variables.scss" as *;
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+.auth-footer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-self: stretch;
+	background: $charcoal-blue-gradient;
+	color: $porcelain;
+
+	width: 230px;
+}
+
+.form-submit {
+	margin-top: 1rem;
+}

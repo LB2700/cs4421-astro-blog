@@ -10,11 +10,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 	<body>
 		<main>
 			<slot />
-			<div class="auth-footer">
-				<p>
-					Already have an account? <a href="/login">Log in</a>
-				</p>
-			</div>
 		</main>
 
 		<style lang="scss">
@@ -38,16 +33,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 				box-shadow: 2px 3px 8px rgba($charcoal-blue, 15%);
 				border-radius: 0.35rem;
 				overflow: hidden;
-			}
-
-
-			.auth-footer {
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				align-self: stretch;
-				background: $charcoal-blue-gradient;
-				color: $porcelain;
 			}
 
 		</style>

@@ -1,10 +1,14 @@
 ---
 import AuthLayout from '../../layouts/AuthLayout.astro';
 import TextInput from '../../components/TextInput.astro';
+
+import "../../styles/auth.scss";
+import "../../styles/buttons.scss";
 ---
 <AuthLayout>
-	<h2>Sign up</h2>
 	<form method="POST" action="/register">
+	<h2>Sign up</h2>
+
 		<TextInput
 			id="username"
 			name="username"
@@ -32,6 +36,11 @@ import TextInput from '../../components/TextInput.astro';
 			required
 		/>
 
-		<button type="submit">Register</button>
+		<button class:list={["action-button", "action-button--primary", "form-submit"]} type="submit">Register</button>
 	</form>
+	<div class="auth-footer">
+		<p>
+			Already have an account? <a href="/auth/login">Log in</a>
+		</p>
+	</div>
 </AuthLayout>
