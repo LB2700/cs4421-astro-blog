@@ -1,0 +1,22 @@
+# generated types
+.astro/
+dist/
+
+# dependencies
+node_modules/
+
+# local tooling and deployment assets
+cdk/
+.git/
+.vscode/
+.vitest/
+
+# local history and documentation
+history.txt
+README.md
+AGENTS.md
+CLAUDE.md
+
+# environment variables
+.env*
+!.env.example
