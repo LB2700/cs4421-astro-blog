@@ -4,6 +4,12 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SideNavigation from '../components/SideNavigation.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCurrentUser } from '../services/auth';
+
+const user = await getCurrentUser({
+    request: Astro.request,
+    cookies: Astro.cookies,
+});
 ---
 
 <!doctype html>
@@ -16,7 +22,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<div class="home-layout">
 			<SideNavigation />
 			<main class="home-content">
-				<h1>🧑‍🚀 Hello, Hehe!</h1>
+				<h1>{user ? `Welcome back ${user.email}` : `🧑‍🚀 Hello, Hehe!`}</h1>
 				<p>
 					Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
 					serves as a lightweight, minimally-styled starting point for anyone looking to build a personal

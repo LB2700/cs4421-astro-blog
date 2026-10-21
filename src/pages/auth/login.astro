@@ -4,17 +4,28 @@ import "../../styles/auth.scss";
 
 import AuthLayout from '../../layouts/AuthLayout.astro';
 import TextInput from '../../components/TextInput.astro';
+
+const errorCode = Astro.url.searchParams.get('error');
+const errorMessage =
+	errorCode === 'invalid-input'
+		? 'Enter your email address and password.'
+		: errorCode === 'login-failed'
+			? 'Unable to log in with those details. Check them and try again.'
+			: null;
 ---
 <AuthLayout>
-	<form method="POST" action="/login">
+	<form method="POST" action="/api/login">
 	<h2>Login</h2>
 
+		{errorMessage && <p class="form-message form-message--error" role="alert">{errorMessage}</p>}
+
 		<TextInput
-			id="username"
-			name="username"
-			label="Username:"
-			placeholder="Enter your username"
-			autocomplete="username"
+			id="email"
+			name="email"
+			label="Email:"
+			type="email"
+			placeholder="Enter your email"
+			autocomplete="email"
 			required
 		/>
 		<TextInput
