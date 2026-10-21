@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib/core';
 import { StaticSiteStack } from "../lib/static-site-stack";
-import { EcrStack } from '../lib/ecs-stack';
+import { EcsStack } from '../lib/ecs-stack';
 
 const app = new cdk.App();
 new StaticSiteStack(app, "StaticSiteStack", {
@@ -16,6 +16,7 @@ new StaticSiteStack(app, "StaticSiteStack", {
 	 env: { account: "278741241847", region: "us-east-1" },
 	/* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
-new EcrStack(app, 'EcrStack', {
+new EcsStack(app, 'EcsStack', {
   env: { account: '278741241847', region: 'us-east-1' },
+  repositoryArn: 'arn:aws:ecr:us-east-1:278741241847:repository/cs4421/wind-ups',
 });

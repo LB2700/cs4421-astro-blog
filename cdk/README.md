@@ -12,3 +12,13 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `npx cdk deploy`  deploy this stack to your default AWS account/region
 * `npx cdk diff`    compare deployed stack with current state
 * `npx cdk synth`   emits the synthesized CloudFormation template
+
+## ECS image
+
+`EcsStack` imports the existing `cs4421/wind-ups` ECR repository by ARN and
+uses it for the ECS task definition. The repository remains externally managed,
+so it will not appear as an `AWS::ECR::Repository` resource in this stack.
+The task definition contains the repository image URI, and the stack grants
+the task execution role permission to pull from it. Set the `ImageTag`
+CloudFormation parameter when deploying to select an image tag (defaults to
+`latest`).

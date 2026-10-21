@@ -1,0 +1,16 @@
+{
+  "cc-api-provider:account=278741241847:exactIdentifier=cs4421/wind-ups:propertiesToReturn.0=Arn:region=us-east-1:typeName=AWS$:$:ECR$:$:Repository": [
+    {
+      "Arn": "arn:aws:ecr:us-east-1:278741241847:repository/cs4421/wind-ups",
+      "Identifier": "cs4421/wind-ups"
+    }
+  ],
+  "availability-zones:account=278741241847:region=us-east-1": [
+    "us-east-1a",
+    "us-east-1b",
+    "us-east-1c",
+    "us-east-1d",
+    "us-east-1e",
+    "us-east-1f"
+  ]
+}
