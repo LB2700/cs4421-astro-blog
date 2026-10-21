@@ -1,13 +1,12 @@
 import { getViteConfig } from "astro/config";
 import { defineConfig } from "vitest/config";
 
-export default getViteConfig(
-	{
-		test: {
-			environment: "node",
-			include: ["tests/**/*.test.ts"],
-			setupFiles: ["./tests/setup.ts"],
-		},
+const astroViteConfig = getViteConfig({});
+
+export default defineConfig(async (environment) => ({
+	...(await astroViteConfig(environment)),
+	test: {
+		environment: "node",
+		include: ["tests/**/*.test.ts"],
 	},
-	{/* customize astro config for tests */},
-);
+}));

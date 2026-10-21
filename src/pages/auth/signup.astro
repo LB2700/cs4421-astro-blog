@@ -1,0 +1,46 @@
+---
+import AuthLayout from '../../layouts/AuthLayout.astro';
+import TextInput from '../../components/TextInput.astro';
+
+import "../../styles/auth.scss";
+import "../../styles/buttons.scss";
+---
+<AuthLayout>
+	<form method="POST" action="/api/register">
+	<h2>Sign up</h2>
+
+		<TextInput
+			id="username"
+			name="username"
+			label="Username:"
+			placeholder="Choose a username"
+			autocomplete="username"
+			required
+		/>
+		<TextInput
+			id="email"
+			name="email"
+			label="Email:"
+			type="email"
+			placeholder="Enter your email"
+			autocomplete="email"
+			required
+		/>
+		<TextInput
+			id="password"
+			name="password"
+			label="Password:"
+			type="password"
+			placeholder="Create a password"
+			autocomplete="new-password"
+			required
+		/>
+
+		<button class:list={["action-button", "action-button--primary", "form-submit"]} type="submit">Register</button>
+	</form>
+	<div class="auth-footer">
+		<p>
+			Already have an account? <a href="/auth/login">Log in</a>
+		</p>
+	</div>
+</AuthLayout>

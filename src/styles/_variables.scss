@@ -16,10 +16,14 @@ $cinnabar: hsla(3, 77%, 61%, 1);
 $porcelian-dark: color.adjust($porcelain, $lightness: -5%, $saturation: -20%);
 $porcelian-darker: color.adjust($porcelain, $lightness: -20%, $saturation: -10%);
 $jet-black-dark: color.adjust($jet-black, $lightness: -10%, $saturation: -20%);
+$charcoal-blue-dark: color.adjust($charcoal-blue, $lightness: -10%, $saturation: 10%);
+
 
 $gray-gradient: $charcoal-blue, $jet-black;
 $porcelian-gradient: $porcelain, $porcelian-dark;
 $porcelian-dark-gradient: $porcelian-dark, $porcelian-darker;
+$charcoal-blue-gradient: linear-gradient(45deg, $charcoal-blue, $charcoal-blue-dark);
+
 
 /* Light Mode */
 $body-bg: linear-gradient($porcelian-gradient);
