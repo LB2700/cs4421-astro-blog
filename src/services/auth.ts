@@ -1,5 +1,11 @@
 import { createServerClient, type SupabaseRequestContext } from './supabase';
 
+const deadRefreshTokenCodes = [
+	'refresh_token_not_found',
+	'refresh_token_already_used',
+	'session_expired',
+];
+
 interface SignUpCredentials {
 	email: string;
 	password: string;
@@ -52,16 +58,29 @@ export async function signInUser(
 }
 
 export async function getCurrentUser(context: SupabaseRequestContext) {
-    const supabase = createServerClient(context);
-    const { data: { user }, error } = await supabase.auth.getUser();
+	const supabase = createServerClient(context);
+	const {
+		data: { user },
+		error,
+	} = await supabase.auth.getUser();
 
-    if (error) {
-        if (error.name === 'AuthSessionMissingError') {
-            return null; // A visitor without a session is expected.
-        }
+	if (error) {
+		if (
+			error.name === 'AuthSessionMissingError' ||
+			(error.name === 'AuthApiError' && deadRefreshTokenCodes.includes(error.code ?? ''))
+		) {
+			if (error.name === 'AuthApiError') {
+				const { error: signOutError } = await supabase.auth.signOut({ scope: 'local' });
+				if (signOutError) {
+					throw signOutError;
+				}
+			}
 
-        throw error;
-    }
+			return null;
+		}
 
-    return user;
+		throw error;
+	}
+
+	return user;
 }

@@ -6,10 +6,24 @@ import SideNavigation from '../components/SideNavigation.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCurrentUser } from '../services/auth';
 
-const user = await getCurrentUser({
-    request: Astro.request,
-    cookies: Astro.cookies,
-});
+let user: Awaited<ReturnType<typeof getCurrentUser>> = null;
+let userLookupFailed = false;
+
+try {
+	user = await getCurrentUser({
+		request: Astro.request,
+		cookies: Astro.cookies,
+	});
+} catch (error) {
+	userLookupFailed = true;
+	console.error(
+		JSON.stringify({
+			event: 'home_user_lookup_failed',
+			error_name: error instanceof Error ? error.name : 'UnknownError',
+			error_message: error instanceof Error ? error.message : 'Non-Error thrown',
+		}),
+	);
+}
 ---
 
 <!doctype html>
@@ -23,6 +37,9 @@ const user = await getCurrentUser({
 			<SideNavigation />
 			<main class="home-content">
 				<h1>{user ? `Welcome back ${user.email}` : `🧑‍🚀 Hello, Hehe!`}</h1>
+				{userLookupFailed && (
+					<p role="status">Account details are temporarily unavailable, but you can still browse the site.</p>
+				)}
 				<p>
 					Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
 					serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
