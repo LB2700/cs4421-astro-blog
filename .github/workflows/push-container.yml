@@ -1,6 +1,7 @@
 name: Deploy Container to AWS
 
 on:
+  push:
     tags:
       - 'v*'
 
