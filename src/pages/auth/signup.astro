@@ -4,10 +4,28 @@ import TextInput from '../../components/TextInput.astro';
 
 import "../../styles/auth.scss";
 import "../../styles/buttons.scss";
+
+const statusCode = Astro.url.searchParams.get('status');
+const statusMessage =
+	statusCode === 'check-email'
+		? 'Confirm email to login'
+		: null;
+
+const errorCode = Astro.url.searchParams.get('error');
+const errorMessage =
+	errorCode === 'invalid-input'
+		? 'Invalid email address or password'
+		: errorCode === 'signup-failed'
+			? 'Unable to sign up with those details. Check them and try again.'
+			: null;
 ---
 <AuthLayout>
 	<form method="POST" action="/api/register">
 	<h2>Sign up</h2>
+	
+		{statusMessage && <p class="form-message" role="alert">{statusMessage}</p>}
+		{errorMessage && <p class="form-message form-message--error" role="alert">{errorMessage}</p>}
+
 
 		<TextInput
 			id="username"
