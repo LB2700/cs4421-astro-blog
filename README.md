@@ -43,8 +43,8 @@ All commands are run from the root of the project, from a terminal:
 
 Set these environment variables for local development and deployment:
 
-- `PUBLIC_SUPABASE_URL`: the Supabase project URL.
-- `PUBLIC_SUPABASE_PUBLISHABLE_KEY`: the project's publishable (or legacy anon) key. Do not use a `service_role` or secret key here.
-- `PUBLIC_SITE_URL`: the public base URL of this application, such as `http://localhost:4321` locally or the production HTTPS origin.
+- `SUPABASE_URL`: the Supabase project URL.
+- `SUPABASE_PUBLISHABLE_KEY`: the project's publishable (or legacy anon) key. Do not use a `service_role` or secret key here.
+- `SITE_URL`: the public base URL of this application, such as `http://localhost:4321` locally or the production HTTPS origin.
 
-Allow the `/auth/confirm` URL under **Authentication → URL Configuration → Redirect URLs** in the Supabase dashboard. Because the callback verifies `token_hash`, configure the **Confirm signup** email template to link to `{{ .RedirectTo }}?token_hash={{ .TokenHash }}&amp;type=email`.
+Allow the `/auth/confirm` URL under **Authentication → URL Configuration → Redirect URLs** in the Supabase dashboard. Because the callback verifies `token_hash`, configure the **Confirm signup** email template to link to `{{ .RedirectTo }}?token_hash={{ .TokenHash }}&amp;type=email`. Custom SMTP need for this WIP.
