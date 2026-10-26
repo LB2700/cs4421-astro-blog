@@ -35,11 +35,9 @@ Astro project with SSR enabled.
 - **Authentication and backend:** Supabase JavaScript client with
   `@supabase/ssr` for server-side authentication flows.
 - **Deployment:** A multi-stage Docker image runs the Astro Node server.
-  AWS CDK (TypeScript) defines an ECS Fargate deployment behind an Application
-  Load Balancer using an image from ECR, as well as a separate S3 and CloudFront
-  static-site deployment stack.
-- **Quality checks:** ESLint, Astro check, Vitest unit/integration tests, and
-  Playwright end-to-end tests.
+  AWS CDK written with, TypeScript, defines an ECS Fargate deployment behind an Application
+  Load Balancer using an image from ECR
+- **Quality checks:** ESLint, Astro check, Vitest unit tests
 
 ## Commands
 
