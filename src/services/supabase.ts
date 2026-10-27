@@ -9,8 +9,8 @@ export type SupabaseRequestContext = {
 	cookies: Pick<APIContext['cookies'], 'set'>;
 };
 
-const supabaseUrl = import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 
 export function createServerClient(context: SupabaseRequestContext) {
 	if (!supabaseUrl || !supabaseKey) {
