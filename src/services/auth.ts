@@ -15,7 +15,7 @@ export async function signUpNewUser(
 	{ email, password }: SignUpCredentials,
 	context: SupabaseRequestContext,
 ) {
-	const siteUrl = import.meta.env.SITE_URL;
+	const siteUrl = process.env.SITE_URL;
 	if (!siteUrl) {
 		throw new Error('SITE_URL must be configured for email confirmation.');
 	}

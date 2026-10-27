@@ -51,8 +51,9 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`                                                 | Preview your build locally, before deploying     |
 | `npm run astro ...`                                               | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help`                                         | Get help using the Astro CLI                     |
-| `docker build -t <image-name> .`                                  | build docker image                               |
-| `docker run -d -p 4321:4321 --name <container-name> <image-name>` | build docker container based on image            | 
+| `docker build -t <image-name> .`                                  | Build a production Docker image                   |
+| `docker run -d -p 4321:4321 --name <container-name> <image-name>` | Build docker container based on image           |
+
 
 ## Supabase sign-up configuration
 

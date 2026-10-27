@@ -8,6 +8,9 @@ import * as logs from 'aws-cdk-lib/aws-logs';
 
 export interface EcsStackProps extends cdk.StackProps {
   repositoryArn: string;
+  supabaseUrl: string;
+  supabasePublishableKey: string;
+  siteUrl: string;
   certificateArn?: string;
 }
 
@@ -59,7 +62,14 @@ export class EcsStack extends cdk.Stack {
       taskImageOptions: {
         image: ecs.ContainerImage.fromEcrRepository(repository, imageTag.valueAsString),
         containerPort: 4321,
-        environment: { NODE_ENV: 'production', HOST: '0.0.0.0', PORT: '4321' },
+        environment: {
+          NODE_ENV: 'production',
+          HOST: '0.0.0.0',
+          PORT: '4321',
+          SUPABASE_URL: props.supabaseUrl,
+          SUPABASE_PUBLISHABLE_KEY: props.supabasePublishableKey,
+          SITE_URL: props.siteUrl,
+        },
         logDriver: ecs.LogDrivers.awsLogs({ streamPrefix: 'astro', logGroup }),
       },
     });

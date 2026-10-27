@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { href, label } = Astro.props;
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+const pathname = Astro.url.pathname.replace(process.env.SITE_URL!, '');
 const isActive =
 	href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 ---
