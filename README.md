@@ -24,6 +24,21 @@ Astro project with SSR enabled.
 └── tsconfig.json
 ```
 
+## Technology Stack
+
+- **Application:** Astro with server-side rendering, served by the standalone
+  `@astrojs/node` adapter in a Node.js runtime.
+- **Language and content:** TypeScript, Astro components, and MDX for authored
+  content.
+- **Styling and assets:** Sass, locally hosted fonts, and `sharp` for image
+  processing.
+- **Authentication and backend:** Supabase JavaScript client with
+  `@supabase/ssr` for server-side authentication flows.
+- **Deployment:** A multi-stage Docker image runs the Astro Node server.
+  AWS CDK written with, TypeScript, defines an ECS Fargate deployment behind an Application
+  Load Balancer using an image from ECR
+- **Quality checks:** ESLint, Astro check, Vitest unit tests
+
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
