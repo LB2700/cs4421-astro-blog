@@ -11,6 +11,13 @@ export default defineConfig({
 	adapter: node({
 		mode: "standalone", // Self-contained HTTP server listening on a port
 	}),
+	security: {
+		allowedDomains: [
+			{
+				hostname: "ecssta-astro-trtxilfxdsrn-1402347678.us-east-1.elb.amazonaws.com",
+			},
+		],
+	},
 	site: "https://example.com",
 	integrations: [mdx(), sitemap()],
 	fonts: [
