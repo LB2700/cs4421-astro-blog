@@ -11,6 +11,13 @@ export default defineConfig({
 	adapter: node({
 		mode: "standalone", // Self-contained HTTP server listening on a port
 	}),
+	vite: {
+		server: {
+			watch: {
+				usePolling: true,
+			},
+		},
+	},
 	security: {
 		allowedDomains: [
 			{
